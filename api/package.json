@@ -1,0 +1,19 @@
+{
+  "name": "foodstyle.api",
+  "version": "1.0.0",
+  "description": "API feita em nodeJS para o app foodstyle",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/viShin/StyleFood.git"
+  },
+  "author": "Vitor S Assanuma",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/viShin/StyleFood/issues"
+  },
+  "homepage": "https://github.com/viShin/StyleFood#readme"
+}
