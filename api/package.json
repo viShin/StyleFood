@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/viShin/StyleFood/issues"
   },
-  "homepage": "https://github.com/viShin/StyleFood#readme"
+  "homepage": "https://github.com/viShin/StyleFood#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
 }
