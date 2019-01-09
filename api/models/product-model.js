@@ -22,4 +22,4 @@ productModel.pre('save', next => {
     next();
 });
 
-module.exports = moongose.model('Product', productModel);
+module.exports = mongoose.model('Product', productModel);
