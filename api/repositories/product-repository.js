@@ -1,33 +1,29 @@
 require('../models/product-model');
-const mongoose = require('mongoose');
-const ProductModel = mongoose.model('Product');
+const base = require('../bin/base/repository-base');
 
 class productRepository{
     constructor(){
+        this._base = new base('Product');
+    }
 
+    async getAll(){
+        return await this._base.getAll();
     }
 
     async getById(id){
-        return await new ProductModel.findById(id);
-    }
-    async getAll(){
-        return await ProductModel.find();
+        return await this._base.getById(id);
     }
 
     async create(data){
-        let product = new ProductModel(data);
-        let result  = await product.save();
-        return result;
+        return await this._base.create(data);
     }
 
     async update(id, data){
-        await ProductModel.findByIdAndUpdate(id, { $set: data });
-        let result = await ProductModel.findById(id);
-        return result;
+        return await this._base.update(id, data);
     }
 
     async delete(id){
-        return await ProductModel.findByIdAndRemove(id);
+        return await this._base.delete(id);
     }
 }
 
