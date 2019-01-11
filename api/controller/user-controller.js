@@ -41,7 +41,7 @@ userController.prototype.put     = async (req, res) => {
     let _validationContract = new validation();
 
     _validationContract.isRequired(req.body.name, 'Informe seu nome.');
-    _validationContract.isRequired(req.body.id,   'Informe o ID do usuário a ser editado.');
+    _validationContract.isRequired(req.params.id,   'Informe o ID do usuário a ser editado.');
     _validationContract.isRequired(req.body.email,'Informe seu email.');
     _validationContract.isEmail(req.body.email,   'O email é inválido.');
 

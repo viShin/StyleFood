@@ -29,7 +29,7 @@ class userRepository{
     async update(id, data){
         //Garantir que não vai alterar a senha, irá ser criado um método somente para isso.
         let user = await this._base.update(id, {
-            name: data.nome,
+            name: data.name,
             email: data.email,
             image: data.image
         });

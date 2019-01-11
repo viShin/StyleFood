@@ -5,6 +5,9 @@ const variables = {
     },
     Database: {
         conn: process.env.connection || 'mongodb://admin:admin123@ds149984.mlab.com:49984/stylefood'
+    },
+    Security: {
+        secretKey: 'e608c0a13370fb72e3c9adb27277fbcb'
     }
 
 }

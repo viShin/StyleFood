@@ -17,7 +17,7 @@ app.use(bodyPareser.json());
 app.use(bodyPareser.urlencoded({ extended: false }));
 
 //Config do Database
-mongoose.connect(variables.Database.conn);
+mongoose.connect(variables.Database.conn, { useNewUrlParser: true });
 
 //Config das rotas
 app.use('/api/category', categoryRouter);
