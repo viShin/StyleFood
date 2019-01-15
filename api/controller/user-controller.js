@@ -3,6 +3,8 @@ const repository = require('../repositories/user-repository');
 const validation = require('../bin/helpers/validation');
 const ctrlBase   = require('../bin/base/controller-base');
 const md5        = require('md5');
+const jwt        = require('jsonwebtoken');
+const variables  = require('../bin/configuration/variables');
 const _repo = new repository();
 
 function userController(){
@@ -57,5 +59,29 @@ userController.prototype.put     = async (req, res) => {
 userController.prototype.delete  = async (req, res) => { 
     ctrlBase.delete(_repo, req, res);
 };
+
+userController.prototype.authenticate = async (req, res) => {
+    let _validationContract = new validation();
+
+    //Valida email e senha
+    _validationContract.isRequired(req.body.email,'Informe seu email.');
+    _validationContract.isEmail(req.body.email,   'O email é inválido.');
+    _validationContract.isRequired(req.body.password,'A senha informada é inválida.');
+
+    if (!_validationContract.isValid()){
+        res.status(400).send({ message: 'Não foi possível efetuar o login.', validation: _validationContract.errors() });
+        return;
+    }
+
+    let user = await _repo.authenticate(req.body.email, req.body.password);
+    if (user){
+        res.status(200).send({ 
+            user: user,
+            token: jwt.sign({user: user}, variables.Security.secretKey)
+        });
+    }else{
+        res.status(404).send({ message: 'Usuário e senha informados são inválidos.'});
+    }
+}
 
 module.exports = userController;
